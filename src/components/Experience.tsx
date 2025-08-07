@@ -91,8 +91,15 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 lg:py-32 bg-gradient-to-b from-muted/30 to-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-20 lg:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute top-32 right-20 w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-primary/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 right-10 w-24 h-24 bg-accent/10 rounded-full blur-xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
