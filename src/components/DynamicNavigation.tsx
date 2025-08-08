@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Moon, Sun, Monitor, Home, User, Briefcase, Mail, FileText } from 'lucide-react';
+import { Menu, X, Moon, Sun, Monitor, Home, User, Briefcase, Mail, FileText, Command } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
-
-const DynamicNavigation = () => {
+import LogoAnimated from '@/components/LogoAnimated';
+const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const { theme, setTheme } = useTheme();
-
+  const [showBubble, setShowBubble] = useState(true);
+  const lastYRef = useRef(0);
   const navItems = [
     { href: '#home', label: 'Home', icon: Home },
     { href: '#about', label: 'About', icon: User },
@@ -67,7 +68,7 @@ const DynamicNavigation = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? 'bg-background/80 backdrop-blur-md border-b border-border shadow-md' 
             : 'bg-transparent'
@@ -80,9 +81,7 @@ const DynamicNavigation = () => {
               whileHover={{ scale: 1.05 }}
               className="flex-shrink-0"
             >
-              <span className="text-xl font-bold text-gradient">
-                Emmanuel C. Moghalu
-              </span>
+              <LogoAnimated />
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -113,8 +112,23 @@ const DynamicNavigation = () => {
                 size="sm"
                 onClick={cycleTheme}
                 className="w-9 h-9 p-0"
+                aria-label="Toggle theme"
+                title="Toggle theme"
               >
                 {getThemeIcon()}
+              </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onOpenCommandPalette?.()}
+                className="hidden md:inline-flex gap-2"
+                aria-label="Open command palette"
+                title="Search (Ctrl+K or /)"
+              >
+                <Command className="h-4 w-4" />
+                <span className="hidden lg:inline">Search</span>
+                <span className="ml-1 text-xs text-muted-foreground hidden xl:inline">(Ctrl+K or /)</span>
               </Button>
 
               {/* Mobile menu button */}
@@ -124,6 +138,7 @@ const DynamicNavigation = () => {
                   size="sm"
                   onClick={() => setIsOpen(!isOpen)}
                   className="w-9 h-9 p-0"
+                  aria-label="Toggle menu"
                 >
                   {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
@@ -163,23 +178,23 @@ const DynamicNavigation = () => {
 
       {/* Dynamic Island Navigation (floating bubble) */}
       <AnimatePresence>
-        {isScrolled && (
+        {showBubble && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 hidden lg:block"
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
           >
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-card/90 backdrop-blur-lg border border-border rounded-full px-6 py-3 shadow-lg hover:shadow-glow transition-all duration-300"
+              whileHover={{ scale: 1.03 }}
+              className="bg-card/95 backdrop-blur-lg border border-border rounded-full px-4 py-2 shadow-lg"
             >
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
                 {navItems.map((item) => (
                   <motion.button
                     key={item.label}
                     onClick={() => scrollToSection(item.href)}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.05, y: -1 }}
                     whileTap={{ scale: 0.95 }}
                     className={`p-2 rounded-full transition-all duration-200 ${
                       activeSection === item.href.substring(1)
@@ -187,17 +202,19 @@ const DynamicNavigation = () => {
                         : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
                     }`}
                     title={item.label}
+                    aria-label={item.label}
                   >
                     <item.icon className="h-4 w-4" />
                   </motion.button>
                 ))}
-                <div className="w-px h-6 bg-border mx-2" />
+                <div className="w-px h-5 bg-border mx-1" />
                 <motion.button
                   onClick={cycleTheme}
-                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
                   title="Toggle theme"
+                  aria-label="Toggle theme"
                 >
                   {getThemeIcon()}
                 </motion.button>
