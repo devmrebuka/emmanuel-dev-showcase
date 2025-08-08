@@ -90,8 +90,9 @@ const TechStackRadar = () => {
                     r={radius}
                     fill="none"
                     stroke="hsl(var(--border))"
-                    strokeWidth="1"
-                    opacity={0.3}
+                    strokeWidth="1.5"
+                    opacity={0.6}
+                    className="dark:opacity-0.3"
                   />
                 ))}
                 
@@ -104,8 +105,9 @@ const TechStackRadar = () => {
                     x2={200 + 200 * Math.cos((angle - 90) * Math.PI / 180)}
                     y2={200 + 200 * Math.sin((angle - 90) * Math.PI / 180)}
                     stroke="hsl(var(--border))"
-                    strokeWidth="1"
-                    opacity={0.2}
+                    strokeWidth="1.5"
+                    opacity={0.4}
+                    className="dark:opacity-0.2"
                   />
                 ))}
 

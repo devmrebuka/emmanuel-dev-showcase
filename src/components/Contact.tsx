@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Copy, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Copy, Check, Instagram } from 'lucide-react';
+
+// X/Twitter Icon Component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+  </svg>
+);
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -91,10 +98,16 @@ const Contact = () => {
       color: 'hover:text-blue-600'
     },
     {
-      icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/emmanuelmoghalu',
-      color: 'hover:text-blue-400'
+      icon: XIcon,
+      label: 'X (Twitter)',
+      href: 'https://x.com/emmanuelmoghalu',
+      color: 'hover:text-gray-900 dark:hover:text-gray-100'
+    },
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      href: 'https://instagram.com/emmanuelmoghalu',
+      color: 'hover:text-pink-500'
     }
   ];
 

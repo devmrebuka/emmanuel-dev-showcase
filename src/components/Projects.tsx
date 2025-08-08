@@ -181,6 +181,24 @@ const Projects = () => {
           ))}
         </motion.div>
 
+        {/* Show More Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Button
+            onClick={() => window.location.href = '/projects'}
+            variant="outline"
+            className="btn-ghost-hero group"
+          >
+            Show More Projects
+            <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </motion.div>
+
         {/* Project Modal */}
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">

@@ -183,7 +183,7 @@ const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: ()
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
           >
             <motion.div
               whileHover={{ scale: 1.03 }}

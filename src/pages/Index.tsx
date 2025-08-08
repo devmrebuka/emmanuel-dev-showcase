@@ -34,7 +34,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background font-inter">
-      <DynamicNavigation />
+      <DynamicNavigation onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
       <main>
         <Hero />
         <About />

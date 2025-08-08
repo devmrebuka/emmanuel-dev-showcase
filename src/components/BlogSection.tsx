@@ -6,43 +6,36 @@ const BlogSection = () => {
   const blogPosts = [
     {
       id: 1,
-      title: 'Building Scalable React Applications with TypeScript',
-      excerpt: 'Learn best practices for architecting large-scale React applications with TypeScript, including advanced patterns for component composition and state management.',
+      title: 'Building Scalable Data Pipelines with Apache Kafka and Python',
+      excerpt: 'A comprehensive guide to designing and implementing robust data processing pipelines.',
       date: '2024-01-15',
       readTime: '8 min read',
-      tags: ['React', 'TypeScript', 'Architecture'],
+      tags: ['Data Engineering', 'Apache Kafka', 'Python'],
       featured: true,
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=300&fit=crop'
-    },
-    {
-      id: 2,
-      title: 'Data Pipeline Optimization: From Batch to Real-time',
-      excerpt: 'A comprehensive guide to modernizing data pipelines, moving from traditional batch processing to real-time streaming with Apache Kafka and Spark.',
-      date: '2024-01-08',
-      readTime: '12 min read',
-      tags: ['Data Engineering', 'Kafka', 'Spark'],
-      featured: false,
+      slug: 'building-scalable-data-pipelines',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop'
     },
     {
-      id: 3,
-      title: 'Serverless Architecture: Lessons from Production',
-      excerpt: 'Real-world insights from building and deploying serverless applications at scale, including cost optimization and performance monitoring strategies.',
-      date: '2024-01-01',
-      readTime: '10 min read',
-      tags: ['Serverless', 'AWS', 'Performance'],
+      id: 2,
+      title: 'Deploying Machine Learning Models to Production: A Complete Guide',
+      excerpt: 'Learn how to take your ML models from development to production with confidence.',
+      date: '2024-01-08',
+      readTime: '12 min read',
+      tags: ['Machine Learning', 'MLOps', 'Production'],
       featured: false,
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop'
+      slug: 'machine-learning-production',
+      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop'
     },
     {
-      id: 4,
-      title: 'Modern CSS Techniques for Better UI Development',
-      excerpt: 'Explore cutting-edge CSS features including container queries, cascade layers, and modern layout techniques that are changing how we build interfaces.',
-      date: '2023-12-25',
-      readTime: '6 min read',
-      tags: ['CSS', 'Frontend', 'UI/UX'],
+      id: 3,
+      title: 'Microservices Architecture: Lessons from Building at Scale',
+      excerpt: 'Key insights and practical advice from implementing microservices in production environments.',
+      date: '2023-12-22',
+      readTime: '10 min read',
+      tags: ['Microservices', 'Architecture', 'DevOps'],
       featured: false,
-      image: 'https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=500&h=300&fit=crop'
+      slug: 'microservices-architecture',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop'
     }
   ];
 
@@ -129,7 +122,10 @@ const BlogSection = () => {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 hover:text-primary transition-colors cursor-pointer">
+                    <h3 
+                      className="text-2xl font-bold mb-4 hover:text-primary transition-colors cursor-pointer"
+                      onClick={() => window.location.href = `/blog/${featuredPost.slug}`}
+                    >
                       {featuredPost.title}
                     </h3>
                     <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -147,7 +143,11 @@ const BlogSection = () => {
                           </span>
                         ))}
                       </div>
-                      <Button variant="outline" className="group">
+                      <Button 
+                        variant="outline" 
+                        className="group"
+                        onClick={() => window.location.href = `/blog/${featuredPost.slug}`}
+                      >
                         Read More
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Button>
@@ -173,6 +173,7 @@ const BlogSection = () => {
               variants={itemVariants}
               whileHover={{ y: -5 }}
               className="card-elegant overflow-hidden group cursor-pointer"
+              onClick={() => window.location.href = `/blog/${post.slug}`}
             >
               <div className="aspect-video overflow-hidden rounded-lg mb-4">
                 <img
@@ -217,7 +218,15 @@ const BlogSection = () => {
                 )}
               </div>
 
-              <Button variant="ghost" size="sm" className="w-full group">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="w-full group"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = `/blog/${post.slug}`;
+                }}
+              >
                 Read Article
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
