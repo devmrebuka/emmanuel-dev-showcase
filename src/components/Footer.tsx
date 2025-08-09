@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, X, Instagram, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -25,9 +25,14 @@ const Footer = () => {
       label: 'LinkedIn'
     },
     {
-      icon: Twitter,
-      href: 'https://twitter.com/emmanuelmoghalu',
-      label: 'Twitter'
+      icon: X,
+      href: 'https://x.com/emmanuelmoghalu',
+      label: 'X (Twitter)'
+    },
+    {
+      icon: Instagram,
+      href: 'https://instagram.com/emmanuelmoghalu',
+      label: 'Instagram'
     },
     {
       icon: Mail,

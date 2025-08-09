@@ -100,12 +100,12 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          {/* Social Links - Repositioned to bottom right */}
+          {/* Social Links - Fixed to hero section only */}
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="fixed bottom-8 right-8 flex flex-col space-y-4 z-30"
+            className="absolute bottom-8 right-8 flex flex-col space-y-4 z-20"
           >
             <motion.a
               href="https://github.com/emmanuelmoghalu"
@@ -113,7 +113,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, x: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-70 hover:opacity-100"
+              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
             >
               <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </motion.a>
@@ -123,7 +123,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, x: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-70 hover:opacity-100"
+              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
             >
               <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </motion.a>
@@ -131,7 +131,7 @@ const Hero = () => {
               href="mailto:emmanuel@example.com"
               whileHover={{ scale: 1.1, x: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-70 hover:opacity-100"
+              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
             >
               <Mail className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </motion.a>

@@ -21,7 +21,18 @@ const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: ()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 50);
+      
+      // Auto-hide bubble nav logic
+      if (currentY > lastYRef.current && currentY > 200) {
+        // Scrolling down
+        setShowBubble(false);
+      } else if (currentY < lastYRef.current) {
+        // Scrolling up
+        setShowBubble(true);
+      }
+      lastYRef.current = currentY;
       
       // Active section detection
       const sections = navItems.map(item => item.href.substring(1));
@@ -176,12 +187,16 @@ const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: ()
         </div>
       </motion.nav>
 
-      {/* Dynamic Island Navigation (floating bubble) */}
+      {/* Dynamic Island Navigation (floating bubble) - Mobile only */}
       <AnimatePresence>
         {showBubble && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ 
+              opacity: isScrolled ? 1 : 0.9, 
+              scale: 1, 
+              y: isScrolled ? 0 : 10 
+            }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
           >

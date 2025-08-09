@@ -242,7 +242,11 @@ const BlogSection = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button size="lg" className="group">
+          <Button 
+            size="lg" 
+            className="group"
+            onClick={() => window.location.href = '/blog'}
+          >
             View All Posts
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Button>
