@@ -122,35 +122,51 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Skills Grid */}
+          {/* Skills Marquee */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid gap-6"
+            className="relative h-[400px] overflow-hidden rounded-2xl bg-gradient-to-b from-muted/30 to-background border border-border/50"
           >
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.title}
-                variants={itemVariants}
-                className="card-feature group"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
-                    <skill.icon className="h-6 w-6 text-primary" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background z-10 pointer-events-none" />
+            
+            <motion.div
+              animate={{
+                y: [0, -(skills.length * 120)]
+              }}
+              transition={{
+                duration: skills.length * 4,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="flex flex-col space-y-6 pt-6"
+            >
+              {/* Duplicate skills array for seamless loop */}
+              {[...skills, ...skills, ...skills].map((skill, index) => (
+                <motion.div
+                  key={`${skill.title}-${index}`}
+                  className="card-feature group mx-6 min-h-[100px] flex items-center"
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="flex items-start space-x-4 w-full">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
+                      <skill.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
+                        {skill.title}
+                      </h4>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {skill.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
-                      {skill.title}
-                    </h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {skill.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -113,7 +113,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <Breadcrumb items={breadcrumbItems} />
 
@@ -121,210 +121,158 @@ const Blog = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Technical <span className="text-gradient">Writings</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            Technical Writings
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
             Deep dives into software development, data engineering, and modern technology trends.
-            Sharing insights from real-world projects and industry experience.
           </p>
 
-          {/* Search and Filters */}
-          <div className="max-w-2xl mx-auto">
-            <div className="relative mb-6">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 py-3 text-lg"
-              />
-            </div>
+          {/* Search */}
+          <div className="relative mb-6 max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 border-0 bg-muted/30 focus:bg-background transition-colors"
+            />
+          </div>
 
-            {/* Tags Filter */}
-            <div className="flex flex-wrap gap-2 justify-center mb-8">
+          {/* Tags Filter */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            <Badge
+              variant={selectedTag === null ? "default" : "secondary"}
+              className="cursor-pointer hover:bg-primary/90 transition-colors"
+              onClick={() => setSelectedTag(null)}
+            >
+              All
+            </Badge>
+            {allTags.map((tag) => (
               <Badge
-                variant={selectedTag === null ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => setSelectedTag(null)}
+                key={tag}
+                variant={selectedTag === tag ? "default" : "secondary"}
+                className="cursor-pointer hover:bg-primary/90 transition-colors"
+                onClick={() => setSelectedTag(tag)}
               >
-                All Topics
+                {tag}
               </Badge>
-              {allTags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant={selectedTag === tag ? "default" : "outline"}
-                  className="cursor-pointer"
-                  onClick={() => setSelectedTag(tag)}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+            ))}
           </div>
         </motion.div>
 
         {/* Featured Post */}
         {filteredPosts.some(post => post.featured) && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
             className="mb-16"
           >
             {(() => {
               const featuredPost = filteredPosts.find(post => post.featured);
               return featuredPost ? (
-                <div className="card-feature overflow-hidden">
-                  <div className="lg:flex">
-                    <div className="lg:w-1/2">
-                      <img
-                        src={featuredPost.image}
-                        alt={featuredPost.title}
-                        className="w-full h-64 lg:h-full object-cover"
-                      />
-                    </div>
-                    <div className="lg:w-1/2 p-8">
-                      <div className="flex items-center space-x-2 mb-4">
-                        <Badge className="bg-primary text-primary-foreground">
-                          Featured
-                        </Badge>
-                        <Badge variant="outline">
-                          {featuredPost.category}
-                        </Badge>
-                      </div>
-                      
-                      <h2 
-                        className="text-3xl font-bold mb-4 hover:text-primary transition-colors cursor-pointer"
-                        onClick={() => window.location.href = `/blog/${featuredPost.slug}`}
-                      >
-                        {featuredPost.title}
-                      </h2>
-                      
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {featuredPost.excerpt}
-                      </p>
-
-                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="h-4 w-4" />
-                          <span>{formatDate(featuredPost.date)}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
-                          <span>{featuredPost.readTime}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex flex-wrap gap-2">
-                          {featuredPost.tags.slice(0, 3).map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                        <Button 
-                          className="group"
-                          onClick={() => window.location.href = `/blog/${featuredPost.slug}`}
-                        >
-                          Read Article
-                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Button>
-                      </div>
-                    </div>
+                <article className="group cursor-pointer" onClick={() => window.location.href = `/blog/${featuredPost.slug}`}>
+                  <div className="mb-4">
+                    <Badge variant="secondary" className="text-xs">
+                      {featuredPost.category}
+                    </Badge>
                   </div>
-                </div>
+                  
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                    {featuredPost.title}
+                  </h2>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-lg">
+                    {featuredPost.excerpt}
+                  </p>
+
+                  <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
+                    <span>{formatDate(featuredPost.date)}</span>
+                    <span>·</span>
+                    <span>{featuredPost.readTime}</span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {featuredPost.tags.slice(0, 4).map((tag) => (
+                      <Badge key={tag} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </article>
               ) : null;
             })()}
           </motion.div>
         )}
 
-        {/* Articles Grid */}
+        {/* Articles List */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.2 }}
         >
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold">
-              All Articles ({filteredPosts.length})
-            </h2>
-          </div>
+          <div className="border-t border-border/40 pt-8">
+            <div className="space-y-8">
+              {filteredPosts.filter(post => !post.featured).map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 * index }}
+                  className="group cursor-pointer py-6 border-b border-border/20 last:border-b-0"
+                  onClick={() => window.location.href = `/blog/${post.slug}`}
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <div className="mb-2">
+                        <Badge variant="secondary" className="text-xs">
+                          {post.category}
+                        </Badge>
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors leading-tight">
+                        {post.title}
+                      </h3>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.filter(post => !post.featured).map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                whileHover={{ y: -5 }}
-                className="card-elegant overflow-hidden group cursor-pointer"
-                onClick={() => window.location.href = `/blog/${post.slug}`}
-              >
-                <div className="aspect-video overflow-hidden rounded-lg mb-4">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                
-                <div className="mb-3">
-                  <Badge variant="outline" className="text-xs mb-3">
-                    {post.category}
-                  </Badge>
-                  <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>{formatDate(post.date)}</span>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
+                        <span>{formatDate(post.date)}</span>
+                        <span>·</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                        {post.tags.length > 3 && (
+                          <Badge variant="outline" className="text-xs opacity-60">
+                            +{post.tags.length - 3}
+                          </Badge>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="h-4 w-4" />
-                      <span>{post.readTime}</span>
+                    
+                    <div className="flex-shrink-0 w-24 h-16 md:w-32 md:h-20 overflow-hidden rounded-lg bg-muted">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
                     </div>
                   </div>
-                </div>
-
-                <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
-                </h3>
-
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
-                  {post.excerpt}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.slice(0, 2).map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                  {post.tags.length > 2 && (
-                    <Badge variant="outline" className="text-xs">
-                      +{post.tags.length - 2} more
-                    </Badge>
-                  )}
-                </div>
-
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="w-full group"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.location.href = `/blog/${post.slug}`;
-                  }}
-                >
-                  Read Article
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </motion.article>
-            ))}
+                </motion.article>
+              ))}
+            </div>
           </div>
 
           {filteredPosts.length === 0 && (
