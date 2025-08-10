@@ -102,39 +102,59 @@ const Hero = () => {
 
           {/* Social Links - Fixed to hero section only */}
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="absolute bottom-8 right-8 flex flex-col space-y-4 z-20"
+            className="fixed right-6 top-1/2 -translate-y-1/2 z-20 group"
           >
-            <motion.a
-              href="https://github.com/emmanuelmoghalu"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, x: -4 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
+            {/* Collapsed dot state */}
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="relative"
             >
-              <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </motion.a>
-            <motion.a
-              href="https://linkedin.com/in/emmanuelmoghalu"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, x: -4 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
-            >
-              <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </motion.a>
-            <motion.a
-              href="mailto:emmanuel@example.com"
-              whileHover={{ scale: 1.1, x: -4 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-glow opacity-60 hover:opacity-100"
-            >
-              <Mail className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </motion.a>
+              <motion.div
+                className="w-4 h-4 bg-primary/30 rounded-full cursor-pointer transition-all duration-300 group-hover:opacity-0"
+              />
+              
+              {/* Expanded state on hover */}
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                whileHover={{ height: 'auto', opacity: 1 }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 -translate-x-8 flex flex-col space-y-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+              >
+                <motion.a
+                  href="https://github.com/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, x: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
+                  title="GitHub"
+                >
+                  <Github className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/in/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, x: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="mailto:emmanuel@example.com"
+                  whileHover={{ scale: 1.1, x: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
+                  title="Email"
+                >
+                  <Mail className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

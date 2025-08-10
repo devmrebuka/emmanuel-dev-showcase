@@ -422,3 +422,39 @@
   background: hsl(var(--muted));
   color: hsl(var(--primary));
 }
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  .card-feature, .card-elegant {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .grid {
+    gap: 1rem;
+  }
+  
+  .space-x-4 > * + * {
+    margin-left: 0.75rem;
+  }
+  
+  .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Fix hero social icons on mobile */
+  .fixed.right-6 {
+    right: 1rem;
+  }
+  
+  /* Fix overflow issues */
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  /* Ensure proper text wrapping */
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+}

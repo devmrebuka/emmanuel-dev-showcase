@@ -191,29 +191,30 @@ const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: ()
       <AnimatePresence>
         {showBubble && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ 
-              opacity: isScrolled ? 1 : 0.9, 
+              opacity: 1, 
               scale: 1, 
-              y: isScrolled ? 0 : 10 
+              y: 0 
             }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
+            exit={{ opacity: 0, scale: 0.8, y: 30 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 md:hidden"
           >
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="bg-card/95 backdrop-blur-lg border border-border rounded-full px-4 py-2 shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              className="bg-card/95 backdrop-blur-xl border border-border/60 rounded-full px-3 py-2.5 shadow-2xl shadow-primary/10"
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1">
                 {navItems.map((item) => (
                   <motion.button
                     key={item.label}
                     onClick={() => scrollToSection(item.href)}
-                    whileHover={{ scale: 1.05, y: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`p-2 rounded-full transition-all duration-200 ${
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`p-2.5 rounded-full transition-all duration-200 ${
                       activeSection === item.href.substring(1)
-                        ? 'bg-primary text-primary-foreground shadow-md'
+                        ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
                         : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
                     }`}
                     title={item.label}
@@ -222,12 +223,12 @@ const DynamicNavigation = ({ onOpenCommandPalette }: { onOpenCommandPalette?: ()
                     <item.icon className="h-4 w-4" />
                   </motion.button>
                 ))}
-                <div className="w-px h-5 bg-border mx-1" />
+                <div className="w-px h-6 bg-border/50 mx-2" />
                 <motion.button
                   onClick={cycleTheme}
-                  whileHover={{ scale: 1.05, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-2.5 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
                   title="Toggle theme"
                   aria-label="Toggle theme"
                 >

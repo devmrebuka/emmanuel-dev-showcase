@@ -130,7 +130,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -186,20 +186,64 @@ const Contact = () => {
 
             <div className="card-elegant">
               <h3 className="text-xl font-bold mb-4">Follow Me</h3>
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`p-3 rounded-xl bg-muted hover:bg-primary/10 transition-all duration-300 text-muted-foreground ${social.color}`}
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </motion.a>
-                ))}
+              <div className="flex flex-wrap gap-4">
+                <motion.a
+                  href="https://github.com/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  title="GitHub"
+                >
+                  <Github className="h-5 w-5" />
+                </motion.a>
+                
+                <motion.a
+                  href="https://linkedin.com/in/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </motion.a>
+                
+                <motion.a
+                  href="mailto:emmanuel@example.com"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  title="Email"
+                >
+                  <Mail className="h-5 w-5" />
+                </motion.a>
+
+                <motion.a
+                  href="https://instagram.com/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  title="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </motion.a>
+                
+                <motion.a
+                  href="https://x.com/emmanuelmoghalu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  title="X (Twitter)"
+                >
+                  <XIcon className="h-5 w-5" />
+                </motion.a>
               </div>
             </div>
           </motion.div>
