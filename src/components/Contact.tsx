@@ -47,7 +47,7 @@ const Contact = () => {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('emmanuel@example.com');
+      await navigator.clipboard.writeText('emma.moghalu@gmail.com');
       setEmailCopied(true);
       toast({
         title: "Email copied!",
@@ -57,7 +57,7 @@ const Contact = () => {
     } catch (error) {
       toast({
         title: "Copy failed",
-        description: "Please copy the email manually: emmanuel@example.com",
+        description: "Please copy the email manually: emma.moghalu@gmail.com",
         variant: "destructive",
       });
     }
@@ -67,14 +67,14 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'emmanuel@example.com',
-      href: 'mailto:emmanuel@example.com'
+      value: 'emma.moghalu@gmail.com',
+      href: 'mailto:emma.moghalu@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+2347086493145',
+      href: 'tel:+2347086493145'
     },
     {
       icon: MapPin,
@@ -88,25 +88,25 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/emmanuelmoghalu',
+      href: 'https://github.com/emmanuelrichard01',
       color: 'hover:text-gray-900 dark:hover:text-gray-100'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/emmanuelmoghalu',
+      href: 'https://www.linkedin.com/in/e-mc/',
       color: 'hover:text-blue-600'
     },
     {
       icon: XIcon,
       label: 'X (Twitter)',
-      href: 'https://x.com/emmanuelmoghalu',
+      href: 'https://x.com/_mrebuka',
       color: 'hover:text-gray-900 dark:hover:text-gray-100'
     },
     {
       icon: Instagram,
       label: 'Instagram',
-      href: 'https://instagram.com/emmanuelmoghalu',
+      href: 'https://www.instagram.com/officialemmanuelrichard/',
       color: 'hover:text-pink-500'
     }
   ];
@@ -188,7 +188,7 @@ const Contact = () => {
               <h3 className="text-xl font-bold mb-4">Follow Me</h3>
               <div className="flex flex-wrap gap-4">
                 <motion.a
-                  href="https://github.com/emmanuelmoghalu"
+                  href="https://github.com/emmanuelrichard01"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -200,7 +200,7 @@ const Contact = () => {
                 </motion.a>
                 
                 <motion.a
-                  href="https://linkedin.com/in/emmanuelmoghalu"
+                  href="https://www.linkedin.com/in/e-mc/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -212,7 +212,7 @@ const Contact = () => {
                 </motion.a>
                 
                 <motion.a
-                  href="mailto:emmanuel@example.com"
+                  href="mailto:emma.moghalu@gmail.com"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
@@ -222,7 +222,7 @@ const Contact = () => {
                 </motion.a>
 
                 <motion.a
-                  href="https://instagram.com/emmanuelmoghalu"
+                  href="https://www.instagram.com/officialemmanuelrichard/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -234,7 +234,7 @@ const Contact = () => {
                 </motion.a>
                 
                 <motion.a
-                  href="https://x.com/emmanuelmoghalu"
+                  href="https://x.com/_mrebuka"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}

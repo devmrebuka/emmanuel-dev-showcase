@@ -110,7 +110,7 @@ const Hero = () => {
             {/* Desktop / Tablet: vertical stack */}
             <div className="hidden sm:flex flex-col gap-3 pointer-events-auto">
               <a
-                href="https://github.com/emmanuelmoghalu"
+                href="https://github.com/emmanuelrichard01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
@@ -119,7 +119,7 @@ const Hero = () => {
                 <Github className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
               </a>
               <a
-                href="https://linkedin.com/in/emmanuelmoghalu"
+                href="https://www.linkedin.com/in/e-mc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
@@ -128,7 +128,7 @@ const Hero = () => {
                 <Linkedin className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
               </a>
               <a
-                href="mailto:emmanuel@example.com"
+                href="mailto:emma.moghalu@gmail.com"
                 className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
                 title="Email"
               >
@@ -139,7 +139,7 @@ const Hero = () => {
             {/* Mobile: bottom-right row to avoid overlap */}
             <div className="sm:hidden flex gap-3 absolute right-2 bottom-6 pointer-events-auto">
               <a
-                href="https://github.com/emmanuelmoghalu"
+                href="https://github.com/emmanuelrichard01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
@@ -148,7 +148,7 @@ const Hero = () => {
                 <Github className="h-4 w-4 text-muted-foreground" />
               </a>
               <a
-                href="https://linkedin.com/in/emmanuelmoghalu"
+                href="https://www.linkedin.com/in/e-mc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
@@ -157,7 +157,7 @@ const Hero = () => {
                 <Linkedin className="h-4 w-4 text-muted-foreground" />
               </a>
               <a
-                href="mailto:emmanuel@example.com"
+                href="mailto:emma.moghalu@gmail.com"
                 className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
                 title="Email"
               >

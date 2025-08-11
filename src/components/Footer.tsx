@@ -16,27 +16,27 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/emmanuelmoghalu',
+      href: 'https://github.com/emmanuelrichard01',
       label: 'GitHub'
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com/in/emmanuelmoghalu',
+      href: 'https://www.linkedin.com/in/e-mc/',
       label: 'LinkedIn'
     },
     {
       icon: X,
-      href: 'https://x.com/emmanuelmoghalu',
+      href: 'https://x.com/_mrebuka',
       label: 'X (Twitter)'
     },
     {
       icon: Instagram,
-      href: 'https://instagram.com/emmanuelmoghalu',
+      href: 'https://www.instagram.com/officialemmanuelrichard/',
       label: 'Instagram'
     },
     {
       icon: Mail,
-      href: 'mailto:emmanuel@example.com',
+      href: 'mailto:emma.moghalu@gmail.com',
       label: 'Email'
     }
   ];
@@ -110,16 +110,16 @@ const Footer = () => {
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p>San Francisco, CA</p>
                 <a 
-                  href="mailto:emmanuel@example.com"
+                  href="mailto:emma.moghalu@gmail.com"
                   className="hover:text-primary transition-colors duration-200 block"
                 >
-                  emmanuel@example.com
+                  emma.moghalu@gmail.com
                 </a>
                 <a 
-                  href="tel:+15551234567"
+                  href="tel:+2347086493145"
                   className="hover:text-primary transition-colors duration-200 block"
                 >
-                  +1 (555) 123-4567
+                  +2347086493145
                 </a>
               </div>
             </motion.div>
