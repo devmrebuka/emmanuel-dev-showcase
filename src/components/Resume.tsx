@@ -8,25 +8,25 @@ const Resume = () => {
       icon: Briefcase,
       label: 'Years Experience',
       value: '5+',
-      color: 'text-blue-500'
+      color: 'text-primary'
     },
     {
       icon: Code,
       label: 'Projects Completed',
       value: '50+',
-      color: 'text-green-500'
+      color: 'text-primary'
     },
     {
       icon: Award,
       label: 'Certifications',
       value: '8',
-      color: 'text-purple-500'
+      color: 'text-primary'
     },
     {
       icon: FileText,
       label: 'Technical Skills',
       value: '20+',
-      color: 'text-orange-500'
+      color: 'text-primary'
     }
   ];
 
@@ -122,7 +122,7 @@ const Resume = () => {
           >
             {/* Resume Preview */}
             <div className="card-feature">
-              <div className="aspect-[8.5/11] bg-gradient-to-b from-background to-muted rounded-lg border-2 border-dashed border-border flex items-center justify-center mb-6">
+              <div onClick={handlePreview} role="button" aria-label="Preview resume PDF" className="aspect-[8.5/11] bg-gradient-to-b from-background to-muted rounded-lg border-2 border-dashed border-border flex items-center justify-center mb-6 cursor-pointer transition-shadow hover:shadow-glow">
                 <div className="text-center">
                   <FileText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground">Resume Preview</p>

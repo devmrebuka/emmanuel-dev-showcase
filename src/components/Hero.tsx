@@ -105,10 +105,10 @@ const Hero = () => {
             initial={{ x: 30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10"
+            className="pointer-events-none absolute right-1 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-10"
           >
             {/* Desktop / Tablet: vertical stack */}
-            <div className="hidden sm:flex flex-col gap-3">
+            <div className="hidden sm:flex flex-col gap-3 pointer-events-auto">
               <a
                 href="https://github.com/emmanuelmoghalu"
                 target="_blank"
@@ -137,7 +137,7 @@ const Hero = () => {
             </div>
 
             {/* Mobile: bottom-right row to avoid overlap */}
-            <div className="sm:hidden flex gap-3 absolute right-1 bottom-6">
+            <div className="sm:hidden flex gap-3 absolute right-2 bottom-6 pointer-events-auto">
               <a
                 href="https://github.com/emmanuelmoghalu"
                 target="_blank"

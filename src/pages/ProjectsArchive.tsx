@@ -209,7 +209,7 @@ const ProjectsArchive = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 overflow-x-hidden"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -218,7 +218,7 @@ const ProjectsArchive = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className={`card-elegant cursor-pointer relative ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
+              className={`card-elegant cursor-pointer relative p-5 sm:p-6 ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
               onClick={() => setSelectedProject(project)}
             >
               {project.featured && (
@@ -241,11 +241,11 @@ const ProjectsArchive = () => {
                 {project.title}
               </h3>
 
-              <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+              <p className="text-muted-foreground text-sm mb-4 line-clamp-4 md:line-clamp-3">
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-1 mb-4">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
