@@ -128,47 +128,47 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative h-[480px] overflow-hidden rounded-2xl bg-gradient-to-b from-muted/20 to-background border border-border/30"
+            className="relative h-[420px] md:h-[480px] overflow-hidden rounded-2xl bg-gradient-to-b from-muted/20 to-background border border-border/30"
           >
             {/* Subtle fade gradients */}
-            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background via-background/80 to-transparent z-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
-            
-            <motion.div
-              animate={{
-                y: [0, -(skills.length * 120)]
-              }}
-              transition={{
-                duration: skills.length * 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="flex flex-col space-y-6 pt-6"
-            >
-              {/* Triple the skills array for seamless infinite loop */}
-              {[...skills, ...skills, ...skills].map((skill, index) => (
-                <motion.div
-                  key={`${skill.title}-${index}`}
-                  className="mx-6 min-h-[96px] flex items-center opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  whileHover={{ scale: 1.01, x: 2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30 hover:border-border/60 transition-all duration-300">
-                    <div className="p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
-                      <skill.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-base font-semibold mb-1.5 text-foreground">
-                        {skill.title}
-                      </h4>
-                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                        {skill.description}
-                      </p>
+            <div className="absolute top-0 left-0 right-0 h-12 md:h-16 bg-gradient-to-b from-background via-background/70 to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-12 md:h-16 bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
+
+            {/* Continuous vertical marquee - duplicated content for seamless loop */}
+            <div className="marquee-vert">
+              <div className="flex flex-col space-y-4 md:space-y-6 pt-4">
+                {skills.map((skill) => (
+                  <div key={skill.title} className="mx-4 md:mx-6 min-h-[96px] flex items-center opacity-95 hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30 hover:border-border/60 transition-all duration-300">
+                      <div className="p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
+                        <skill.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
+                      </div>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </div>
+
+              {/* Duplicate for seamless scroll */}
+              <div className="flex flex-col space-y-4 md:space-y-6 pt-4" aria-hidden="true">
+                {skills.map((skill, index) => (
+                  <div key={`${skill.title}-dup-${index}`} className="mx-4 md:mx-6 min-h-[96px] flex items-center opacity-95 transition-opacity duration-300">
+                    <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30">
+                      <div className="p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
+                        <skill.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

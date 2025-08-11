@@ -97,7 +97,7 @@ const BlogSection = () => {
           {(() => {
             const featuredPost = blogPosts.find(post => post.featured);
             return featuredPost ? (
-              <div className="card-feature overflow-hidden">
+              <div className="card-feature p-0 overflow-hidden">
                 <div className="md:flex">
                   <div className="md:w-1/2">
                     <img
@@ -165,7 +165,7 @@ const BlogSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {blogPosts.filter(post => !post.featured).map((post) => (
             <motion.article

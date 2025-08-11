@@ -461,3 +461,41 @@
     flex-wrap: wrap;
   }
 }
+
+/* Sleek global scrollbar styling */
+html, body, * {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.45) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary) / 0.45);
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary) / 0.6);
+}
+
+/***** Vertical marquee *****/
+@keyframes marquee-vert {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.marquee-vert {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  animation: marquee-vert 32s linear infinite;
+}

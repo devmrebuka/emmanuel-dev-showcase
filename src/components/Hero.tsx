@@ -100,61 +100,70 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          {/* Social Links - Fixed to hero section only */}
+          {/* Social Links - Edge aligned within hero, simple hover */}
           <motion.div
-            initial={{ x: 50, opacity: 0 }}
+            initial={{ x: 30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="fixed right-6 top-1/2 -translate-y-1/2 z-20 group"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10"
           >
-            {/* Collapsed dot state */}
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              className="relative"
-            >
-              <motion.div
-                className="w-4 h-4 bg-primary/30 rounded-full cursor-pointer transition-all duration-300 group-hover:opacity-0"
-              />
-              
-              {/* Expanded state on hover */}
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                whileHover={{ height: 'auto', opacity: 1 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 -translate-x-8 flex flex-col space-y-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            {/* Desktop / Tablet: vertical stack */}
+            <div className="hidden sm:flex flex-col gap-3">
+              <a
+                href="https://github.com/emmanuelmoghalu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                title="GitHub"
               >
-                <motion.a
-                  href="https://github.com/emmanuelmoghalu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, x: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
-                  title="GitHub"
-                >
-                  <Github className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
-                </motion.a>
-                <motion.a
-                  href="https://linkedin.com/in/emmanuelmoghalu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, x: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
-                </motion.a>
-                <motion.a
-                  href="mailto:emmanuel@example.com"
-                  whileHover={{ scale: 1.1, x: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-glow"
-                  title="Email"
-                >
-                  <Mail className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
-                </motion.a>
-              </motion.div>
-            </motion.div>
+                <Github className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+              </a>
+              <a
+                href="https://linkedin.com/in/emmanuelmoghalu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                title="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+              </a>
+              <a
+                href="mailto:emmanuel@example.com"
+                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                title="Email"
+              >
+                <Mail className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+              </a>
+            </div>
+
+            {/* Mobile: bottom-right row to avoid overlap */}
+            <div className="sm:hidden flex gap-3 absolute right-1 bottom-6">
+              <a
+                href="https://github.com/emmanuelmoghalu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
+                title="GitHub"
+              >
+                <Github className="h-4 w-4 text-muted-foreground" />
+              </a>
+              <a
+                href="https://linkedin.com/in/emmanuelmoghalu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
+                title="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4 text-muted-foreground" />
+              </a>
+              <a
+                href="mailto:emmanuel@example.com"
+                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
+                title="Email"
+              >
+                <Mail className="h-4 w-4 text-muted-foreground" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

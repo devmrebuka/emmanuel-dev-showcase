@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Breadcrumb from '@/components/Breadcrumb';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,29 @@ const Blog = () => {
     { label: 'Home', href: '/' },
     { label: 'Blog' }
   ];
+
+  // SEO
+  useEffect(() => {
+    document.title = 'Technical Writings | Emmanuel Moghalu';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const content = 'Technical writings on software development, data engineering, and modern architectures.';
+    if (metaDesc) metaDesc.setAttribute('content', content);
+    else {
+      const m = document.createElement('meta');
+      m.name = 'description';
+      m.content = content;
+      document.head.appendChild(m);
+    }
+    const linkCanonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    const href = window.location.origin + '/blog';
+    if (linkCanonical) linkCanonical.href = href;
+    else {
+      const l = document.createElement('link');
+      l.rel = 'canonical';
+      l.href = href;
+      document.head.appendChild(l);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">

@@ -130,13 +130,13 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6 lg:gap-8"
+          className="grid gap-6 sm:gap-8 md:grid-cols-2"
         >
           {projects.map((project) => (
             <motion.div
               key={project.id}
               variants={projectVariants}
-              className="card-feature group cursor-pointer overflow-hidden"
+              className="card-feature group cursor-pointer overflow-hidden p-6 sm:p-8"
               onClick={() => setSelectedProject(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
