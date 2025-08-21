@@ -209,7 +209,7 @@ const ProjectsArchive = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 overflow-x-hidden"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 overflow-x-hidden p-5"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
