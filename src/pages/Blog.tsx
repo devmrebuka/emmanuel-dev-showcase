@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, ArrowRight, Tag, Search, Filter, TrendingUp } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Tag, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';  
+import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 import Breadcrumb from '@/components/Breadcrumb';
 import { useEffect, useState } from 'react';
 
@@ -136,8 +135,8 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/80">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <Breadcrumb items={breadcrumbItems} />
 
@@ -145,209 +144,171 @@ const Blog = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-16"
         >
-          <Badge variant="outline" className="px-3 py-1 mb-4">
-            <TrendingUp className="mr-2 h-4 w-4" />
-            Latest Insights
-          </Badge>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             Technical Writings
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Deep dives into software development, data engineering, and modern architectures.
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            Deep dives into software development, data engineering, and modern technology trends.
           </p>
 
-          {/* Search and Filter */}
-          <div className="max-w-2xl mx-auto space-y-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+          {/* Search */}
+          <div className="relative mb-6 max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 border-0 bg-muted/30 focus:bg-background transition-colors"
+            />
+          </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
+          {/* Tags Filter */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            <Badge
+              variant={selectedTag === null ? "default" : "secondary"}
+              className="cursor-pointer hover:bg-primary/90 transition-colors"
+              onClick={() => setSelectedTag(null)}
+            >
+              All
+            </Badge>
+            {allTags.map((tag) => (
               <Badge
-                variant={selectedTag === null ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => setSelectedTag(null)}
+                key={tag}
+                variant={selectedTag === tag ? "default" : "secondary"}
+                className="cursor-pointer hover:bg-primary/90 transition-colors"
+                onClick={() => setSelectedTag(tag)}
               >
-                All ({blogPosts.length})
+                {tag}
               </Badge>
-              {allTags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant={selectedTag === tag ? "default" : "outline"}
-                  className="cursor-pointer"
-                  onClick={() => setSelectedTag(tag)}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+            ))}
           </div>
         </motion.div>
 
         {/* Featured Post */}
         {filteredPosts.some(post => post.featured) && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-12"
+            className="mb-16"
           >
             {(() => {
               const featuredPost = filteredPosts.find(post => post.featured);
               return featuredPost ? (
-                <Card className="overflow-hidden group cursor-pointer hover:shadow-lg transition-all duration-300" onClick={() => window.location.href = `/blog/${featuredPost.slug}`}>
-                  <div className="relative">
-                    <div className="absolute top-4 left-4 z-10">
-                      <Badge className="bg-primary text-primary-foreground">
-                        Featured
-                      </Badge>
-                    </div>
-                    <div className="h-64 md:h-80 overflow-hidden">
-                      <img
-                        src={featuredPost.image}
-                        alt={featuredPost.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
+                <article className="group cursor-pointer" onClick={() => window.location.href = `/blog/${featuredPost.slug}`}>
+                  <div className="mb-4">
+                    <Badge variant="secondary" className="text-xs">
+                      {featuredPost.category}
+                    </Badge>
                   </div>
                   
-                  <CardContent className="p-6">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {featuredPost.title}
-                    </h2>
-                    
-                    <p className="text-muted-foreground mb-4">
-                      {featuredPost.excerpt}
-                    </p>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                    {featuredPost.title}
+                  </h2>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-lg">
+                    {featuredPost.excerpt}
+                  </p>
 
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{formatDate(featuredPost.date)}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="h-4 w-4" />
-                        <span>{featuredPost.readTime}</span>
-                      </div>
-                    </div>
+                  <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
+                    <span>{formatDate(featuredPost.date)}</span>
+                    <span>·</span>
+                    <span>{featuredPost.readTime}</span>
+                  </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {featuredPost.tags.slice(0, 4).map((tag) => (
-                        <Badge key={tag} variant="secondary">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                  <div className="flex flex-wrap gap-2">
+                    {featuredPost.tags.slice(0, 4).map((tag) => (
+                      <Badge key={tag} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </article>
               ) : null;
             })()}
           </motion.div>
         )}
 
-        {/* Articles Grid */}
+        {/* Articles List */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-2">All Articles</h2>
-            <p className="text-muted-foreground">
-              {filteredPosts.filter(post => !post.featured).length} articles
-            </p>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredPosts.filter(post => !post.featured).map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                className="group cursor-pointer"
-                onClick={() => window.location.href = `/blog/${post.slug}`}
-              >
-                <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300">
-                  <div className="relative overflow-hidden">
-                    <div className="aspect-[16/10] overflow-hidden">
+          <div className="border-t border-border/40 pt-8">
+            <div className="space-y-8">
+              {filteredPosts.filter(post => !post.featured).map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 * index }}
+                  className="group cursor-pointer py-6 border-b border-border/20 last:border-b-0"
+                  onClick={() => window.location.href = `/blog/${post.slug}`}
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <div className="mb-2">
+                        <Badge variant="secondary" className="text-xs">
+                          {post.category}
+                        </Badge>
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors leading-tight">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
+                        <span>{formatDate(post.date)}</span>
+                        <span>·</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                        {post.tags.length > 3 && (
+                          <Badge variant="outline" className="text-xs opacity-60">
+                            +{post.tags.length - 3}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex-shrink-0 w-24 h-16 md:w-32 md:h-20 overflow-hidden rounded-lg bg-muted">
                       <img
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary">
-                        {post.category}
-                      </Badge>
-                    </div>
                   </div>
-                  
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-muted-foreground mb-4 line-clamp-2">
-                      {post.excerpt}
-                    </p>
-
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{formatDate(post.date)}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="h-4 w-4" />
-                        <span>{post.readTime}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                      {post.tags.length > 3 && (
-                        <Badge variant="outline" className="text-xs opacity-60">
-                          +{post.tags.length - 3}
-                        </Badge>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.article>
-            ))}
+                </motion.article>
+              ))}
+            </div>
           </div>
-        </motion.div>
 
-        {filteredPosts.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-16"
-          >
-            <div className="mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-                <Search className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">No articles found</h3>
-              <p className="text-muted-foreground mb-6">
-                Try adjusting your search or filter criteria.
+          {filteredPosts.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-xl text-muted-foreground mb-4">
+                No articles found matching your criteria.
               </p>
               <Button
+                variant="outline"
                 onClick={() => {
                   setSearchTerm('');
                   setSelectedTag(null);
@@ -355,9 +316,9 @@ const Blog = () => {
               >
                 Clear Filters
               </Button>
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
+        </motion.div>
       </div>
     </div>
   );
