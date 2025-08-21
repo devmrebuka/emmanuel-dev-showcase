@@ -204,98 +204,100 @@ const ProjectsArchive = () => {
           </div>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Enhanced Projects Grid */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 overflow-x-hidden"
+          className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              className={`card-elegant cursor-pointer relative p-5 sm:p-6 ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className={`relative overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer bg-gradient-to-br from-card to-card/80 backdrop-blur-sm ${project.featured ? 'ring-2 ring-primary/30 shadow-primary/10' : ''}`}
               onClick={() => setSelectedProject(project)}
             >
               {project.featured && (
-                <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full font-medium">
-                  Featured
+                <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs px-3 py-1.5 rounded-full font-bold shadow-lg">
+                  ⭐ Featured
                 </div>
               )}
 
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="outline" className="text-xs">
-                  {project.category}
-                </Badge>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Calendar className="h-3 w-3" />
-                  {project.year}
+              <div className="p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <Badge variant="outline" className="px-3 py-1 bg-background/50 backdrop-blur-sm">
+                    {project.category}
+                  </Badge>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    <span className="font-medium">{project.year}</span>
+                  </div>
                 </div>
-              </div>
 
-              <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  {project.title}
+                </h3>
 
-              <p className="text-muted-foreground text-sm mb-4 line-clamp-4 md:line-clamp-3">
-                {project.description}
-              </p>
+                <p className="text-muted-foreground text-sm mb-6 leading-relaxed line-clamp-3">
+                  {project.description}
+                </p>
 
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 3 && (
+                    <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-full">
+                      +{project.technologies.length - 3} more
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-3">
+                    {project.github && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.github, '_blank');
+                        }}
+                        className="h-9 w-9 p-0 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        <Github className="h-4 w-4" />
+                      </Button>
+                    )}
+                    {project.demo && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.demo, '_blank');
+                        }}
+                        className="h-9 w-9 p-0 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                  <Badge
+                    variant={project.status === 'Production' ? 'default' : 'secondary'}
+                    className="px-3 py-1"
                   >
-                    {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md">
-                    +{project.technologies.length - 3}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                  {project.github && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.github, '_blank');
-                      }}
-                      className="h-8 w-8 p-0"
-                    >
-                      <Github className="h-4 w-4" />
-                    </Button>
-                  )}
-                  {project.demo && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.demo, '_blank');
-                      }}
-                      className="h-8 w-8 p-0"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  )}
+                    {project.status}
+                  </Badge>
                 </div>
-                <Badge
-                  variant={project.status === 'Production' ? 'default' : 'secondary'}
-                  className="text-xs"
-                >
-                  {project.status}
-                </Badge>
               </div>
             </motion.div>
           ))}
@@ -303,11 +305,27 @@ const ProjectsArchive = () => {
 
         {filteredProjects.length === 0 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-20"
           >
-            <p className="text-muted-foreground text-lg">No projects found matching your criteria.</p>
+            <div className="max-w-md mx-auto p-8 rounded-2xl border-0 shadow-lg bg-card/50 backdrop-blur-sm">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+                <Search className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">No projects found</h3>
+              <p className="text-muted-foreground mb-6">
+                No projects match your current search criteria. Try adjusting your filters or search terms.
+              </p>
+              <Button
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory(null);
+                }}
+              >
+                Clear All Filters
+              </Button>
+            </div>
           </motion.div>
         )}
 

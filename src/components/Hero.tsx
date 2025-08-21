@@ -100,12 +100,12 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          {/* Social Links - Edge aligned within hero, simple hover */}
+          {/* Social Links - Fixed at left edge of hero section */}
           <motion.div
-            initial={{ x: 30, opacity: 0 }}
+            initial={{ x: -30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="pointer-events-none absolute right-1 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-10"
+            className="fixed left-4 top-1/2 -translate-y-1/2 z-20 pointer-events-none"
           >
             {/* Desktop / Tablet: vertical stack */}
             <div className="hidden sm:flex flex-col gap-3 pointer-events-auto">
@@ -113,36 +113,36 @@ const Hero = () => {
                 href="https://github.com/emmanuelrichard01"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                className="p-3 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-300 hover:translate-x-1 hover:bg-primary hover:text-primary-foreground hover:shadow-glow group"
                 title="GitHub"
               >
-                <Github className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+                <Github className="h-4 w-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
               </a>
               <a
                 href="https://www.linkedin.com/in/e-mc/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                className="p-3 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-300 hover:translate-x-1 hover:bg-primary hover:text-primary-foreground hover:shadow-glow group"
                 title="LinkedIn"
               >
-                <Linkedin className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+                <Linkedin className="h-4 w-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
               </a>
               <a
                 href="mailto:emma.moghalu@gmail.com"
-                className="p-3 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 hover:-translate-x-1 hover:shadow-glow"
+                className="p-3 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-300 hover:translate-x-1 hover:bg-primary hover:text-primary-foreground hover:shadow-glow group"
                 title="Email"
               >
-                <Mail className="h-4 w-4 text-muted-foreground transition-colors hover:text-primary" />
+                <Mail className="h-4 w-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
               </a>
             </div>
 
-            {/* Mobile: bottom-right row to avoid overlap */}
-            <div className="sm:hidden flex gap-3 absolute right-2 bottom-6 pointer-events-auto">
+            {/* Mobile: horizontal row at bottom left */}
+            <div className="sm:hidden flex flex-col gap-3 pointer-events-auto">
               <a
                 href="https://github.com/emmanuelrichard01"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
+                className="p-2.5 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-200 active:scale-95 hover:bg-primary"
                 title="GitHub"
               >
                 <Github className="h-4 w-4 text-muted-foreground" />
@@ -151,15 +151,15 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/e-mc/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
+                className="p-2.5 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-200 active:scale-95 hover:bg-primary"
                 title="LinkedIn"
               >
                 <Linkedin className="h-4 w-4 text-muted-foreground" />
               </a>
               <a
                 href="mailto:emma.moghalu@gmail.com"
-                className="p-2.5 rounded-full bg-card/90 backdrop-blur-sm border border-border/50 shadow-md transition-transform duration-200 active:scale-95"
-                title="Email"
+                className="p-2.5 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-200 active:scale-95 hover:bg-primary"
+                title="Email"  
               >
                 <Mail className="h-4 w-4 text-muted-foreground" />
               </a>
