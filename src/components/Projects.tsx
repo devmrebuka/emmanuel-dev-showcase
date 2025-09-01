@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Project } from '@/types';
+import { ProjectCardSkeleton } from '@/components/SkeletonLoader';
+
+// Optimized image imports
+import dataflowImage from '@/assets/project-dataflow.jpg';
+import aiReviewerImage from '@/assets/project-ai-reviewer.jpg';
+import ecommerceImage from '@/assets/project-ecommerce.jpg';
+import smartCityImage from '@/assets/project-smart-city.jpg';
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: 'DataFlow Analytics Platform',
       description: 'A comprehensive data analytics platform that processes millions of records daily with real-time visualizations.',
-      image: '/api/placeholder/600/400',
+      image: dataflowImage,
       technologies: ['React', 'TypeScript', 'Python', 'Apache Kafka', 'PostgreSQL', 'Docker'],
       category: 'Data Engineering',
       github: 'https://github.com/emmanuelmoghalu/dataflow-analytics',
@@ -31,7 +39,7 @@ const Projects = () => {
       id: 2,
       title: 'AI-Powered Code Review Assistant',
       description: 'Machine learning tool that automates code review processes and suggests improvements using natural language processing.',
-      image: '/api/placeholder/600/400',
+      image: aiReviewerImage,
       technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'MongoDB', 'AWS'],
       category: 'Machine Learning',
       github: 'https://github.com/emmanuelmoghalu/ai-code-reviewer',
@@ -50,7 +58,7 @@ const Projects = () => {
       id: 3,
       title: 'Cloud-Native E-commerce Platform',
       description: 'Modern e-commerce solution built with microservices architecture, supporting high-traffic scenarios.',
-      image: '/api/placeholder/600/400',
+      image: ecommerceImage,
       technologies: ['Next.js', 'Node.js', 'GraphQL', 'Kubernetes', 'Redis', 'Stripe'],
       category: 'Full-Stack Development',
       github: 'https://github.com/emmanuelmoghalu/ecommerce-platform',
@@ -69,7 +77,7 @@ const Projects = () => {
       id: 4,
       title: 'Smart City IoT Dashboard',
       description: 'Real-time monitoring system for urban infrastructure using IoT sensors and predictive analytics.',
-      image: '/api/placeholder/600/400',
+      image: smartCityImage,
       technologies: ['Vue.js', 'Python', 'InfluxDB', 'Grafana', 'MQTT', 'TensorFlow'],
       category: 'IoT & Analytics',
       github: 'https://github.com/emmanuelmoghalu/smart-city-dashboard',
@@ -142,9 +150,12 @@ const Projects = () => {
               whileTap={{ scale: 0.98 }}
             >
               <div className="aspect-video bg-muted rounded-lg mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <span className="text-primary font-semibold">{project.category}</span>
-                </div>
+                <img 
+                  src={project.image}
+                  alt={`${project.title} - ${project.category} project screenshot`}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               
               <div className="space-y-4">
@@ -214,9 +225,12 @@ const Projects = () => {
                 </DialogHeader>
 
                 <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                    <span className="text-primary font-semibold text-lg">{selectedProject.category} Project</span>
-                  </div>
+                  <img 
+                    src={selectedProject.image}
+                    alt={`${selectedProject.title} - Detailed project view`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
@@ -241,7 +255,7 @@ const Projects = () => {
                     <div>
                       <h4 className="text-lg font-semibold mb-3">Key Features</h4>
                       <ul className="space-y-2">
-                        {selectedProject.features.map((feature: string, index: number) => (
+                        {selectedProject.features.map((feature, index) => (
                           <li key={index} className="flex items-start space-x-2">
                             <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-muted-foreground text-sm">{feature}</span>
@@ -253,7 +267,7 @@ const Projects = () => {
                     <div>
                       <h4 className="text-lg font-semibold mb-3">Tech Stack</h4>
                       <div className="flex flex-wrap gap-2">
-                        {selectedProject.technologies.map((tech: string) => (
+                        {selectedProject.technologies.map((tech) => (
                           <span
                             key={tech}
                             className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-md"
