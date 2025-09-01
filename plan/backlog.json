@@ -1,0 +1,344 @@
+[
+  {
+    "id": "SEO-001",
+    "title": "Add comprehensive meta tags and Open Graph data",
+    "category": "seo",
+    "rationale": "Critical for search visibility and social media sharing. Currently using default Vite title.",
+    "impact": 9,
+    "effort": 2,
+    "confidence": 0.95,
+    "priority": "P0",
+    "files": ["index.html", "src/components/SEOHead.tsx", "src/pages/Index.tsx"],
+    "acceptance": [
+      "Unique title and description per page",
+      "Open Graph tags for social sharing",
+      "Twitter Card meta tags",
+      "Canonical URLs implemented"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "SEO-002", 
+    "title": "Implement JSON-LD structured data for Person/Professional schema",
+    "category": "seo",
+    "rationale": "Enable rich snippets and improve search engine understanding of content",
+    "impact": 8,
+    "effort": 3,
+    "confidence": 0.9,
+    "priority": "P1",
+    "files": ["src/components/StructuredData.tsx", "src/pages/Index.tsx"],
+    "acceptance": [
+      "Person schema with professional details",
+      "Organization schema for projects",
+      "Valid JSON-LD markup",
+      "Google Rich Results test passes"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "PERF-001",
+    "title": "Implement responsive image optimization with WebP/AVIF support",
+    "category": "performance", 
+    "rationale": "Currently using placeholder images. Real optimized images will significantly improve LCP and user experience",
+    "impact": 9,
+    "effort": 4,
+    "confidence": 0.85,
+    "priority": "P0",
+    "files": ["src/components/Projects.tsx", "src/components/About.tsx", "src/assets/", "vite.config.ts"],
+    "acceptance": [
+      "WebP/AVIF images with fallbacks",
+      "Responsive image sizes",
+      "Lazy loading implemented", 
+      "LCP improvement > 30%"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "PERF-002",
+    "title": "Add code splitting for modals and command palette",
+    "category": "performance",
+    "rationale": "Command palette and project modals are not critical for initial load",
+    "impact": 7,
+    "effort": 3,
+    "confidence": 0.9,
+    "priority": "P1", 
+    "files": ["src/components/CommandPalette.tsx", "src/components/Projects.tsx"],
+    "acceptance": [
+      "Dynamic imports for non-critical components",
+      "Bundle size reduction > 20%",
+      "FCP improvement measurable",
+      "Loading states for lazy components"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "PERF-003",
+    "title": "Optimize font loading with preload hints and font-display",
+    "category": "performance",
+    "rationale": "Google Fonts loading blocks render. Preload can improve FCP by 200-500ms",
+    "impact": 6,
+    "effort": 2,
+    "confidence": 0.95,
+    "priority": "P1",
+    "files": ["index.html", "src/index.css"],
+    "acceptance": [
+      "Critical fonts preloaded",
+      "font-display: swap implemented",
+      "CLS reduction > 0.05",
+      "FCP improvement > 200ms"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "A11Y-001",
+    "title": "Comprehensive accessibility audit and ARIA implementation",
+    "category": "accessibility",
+    "rationale": "Many interactive elements lack proper ARIA labels. Critical for screen reader users and WCAG compliance",
+    "impact": 8,
+    "effort": 6,
+    "confidence": 0.9,
+    "priority": "P1",
+    "files": ["src/components/*.tsx"],
+    "acceptance": [
+      "0 critical axe-core violations",
+      "All interactive elements properly labeled",
+      "Focus management in modals",
+      "Screen reader testing passes"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "A11Y-002",
+    "title": "Implement skip navigation and focus trap",
+    "category": "accessibility",
+    "rationale": "Keyboard users need efficient navigation and proper focus management",
+    "impact": 7,
+    "effort": 3,
+    "confidence": 0.85,
+    "priority": "P1",
+    "files": ["src/components/DynamicNavigation.tsx", "src/components/CommandPalette.tsx"],
+    "acceptance": [
+      "Skip to main content link",
+      "Focus trap in command palette",
+      "Visible focus indicators",
+      "Tab order logical and intuitive"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "CODE-001",
+    "title": "Replace TypeScript 'any' types with proper interfaces",
+    "category": "code-quality",
+    "rationale": "Type safety is compromised with 'any' usage. Reduces IDE support and runtime safety",
+    "impact": 5,
+    "effort": 1,
+    "confidence": 1.0,
+    "priority": "P0",
+    "files": ["src/components/Projects.tsx", "src/types/index.ts"],
+    "acceptance": [
+      "Zero 'any' types in codebase",
+      "Proper interfaces for all data structures",
+      "TypeScript strict mode enabled",
+      "No TypeScript compilation errors"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "CODE-002",
+    "title": "Implement comprehensive error boundaries",
+    "category": "code-quality",
+    "rationale": "No error boundaries means entire app crashes on component errors. Poor UX",
+    "impact": 7,
+    "effort": 2,
+    "confidence": 0.9,
+    "priority": "P0",
+    "files": ["src/components/ErrorBoundary.tsx", "src/pages/Index.tsx", "src/App.tsx"],
+    "acceptance": [
+      "Error boundary around main sections",
+      "Graceful error UI with retry option",
+      "Error logging implemented",
+      "User-friendly error messages"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "TEST-001",
+    "title": "Setup testing infrastructure with Vitest and Testing Library",
+    "category": "code-quality",
+    "rationale": "No test coverage identified. Critical for maintainability and confidence in changes",
+    "impact": 8,
+    "effort": 4,
+    "confidence": 0.85,
+    "priority": "P1",
+    "files": ["vitest.config.ts", "src/__tests__/", "src/components/__tests__/"],
+    "acceptance": [
+      "Vitest configuration setup",
+      "Component testing infrastructure",
+      "Basic test coverage > 60%",
+      "CI/CD integration for tests"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "TEST-002",
+    "title": "Add Playwright E2E tests for critical user journeys",
+    "category": "code-quality",
+    "rationale": "Ensure core functionality works end-to-end across browsers",
+    "impact": 7,
+    "effort": 6,
+    "confidence": 0.8,
+    "priority": "P2",
+    "files": ["tests/e2e/", "playwright.config.ts"],
+    "acceptance": [
+      "Navigation flow tests",
+      "Contact form submission test",
+      "Theme toggle functionality test",
+      "Mobile responsive tests"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "SEC-001",
+    "title": "Implement Content Security Policy headers",
+    "category": "security",
+    "rationale": "No CSP headers provide no protection against XSS attacks",
+    "impact": 6,
+    "effort": 3,
+    "confidence": 0.9,
+    "priority": "P1",
+    "files": ["vite.config.ts", "public/_headers", "index.html"],
+    "acceptance": [
+      "CSP headers implemented",
+      "No inline scripts without nonce",
+      "External resources whitelisted",
+      "Security headers validation passes"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "SEC-002",
+    "title": "Comprehensive dependency security audit",
+    "category": "security", 
+    "rationale": "Ensure all dependencies are up-to-date and have no known vulnerabilities",
+    "impact": 7,
+    "effort": 2,
+    "confidence": 0.95,
+    "priority": "P1",
+    "files": ["package.json", "bun.lockb"],
+    "acceptance": [
+      "All dependencies updated to latest stable",
+      "No high/critical security vulnerabilities",
+      "Automated security monitoring setup",
+      "Regular audit schedule established"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "UX-001",
+    "title": "Add loading states and skeleton screens",
+    "category": "ui-ux",
+    "rationale": "No loading feedback creates perception of slow performance",
+    "impact": 6,
+    "effort": 3,
+    "confidence": 0.9,
+    "priority": "P1",
+    "files": ["src/components/SkeletonLoader.tsx", "src/components/Projects.tsx"],
+    "acceptance": [
+      "Skeleton screens for main sections",
+      "Loading states for dynamic content",
+      "Smooth transitions between states",
+      "Perceived performance improvement"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "UX-002",
+    "title": "Improve mobile navigation UX and touch targets",
+    "category": "ui-ux",
+    "rationale": "Floating navigation may obstruct content. Some touch targets below 44px minimum",
+    "impact": 7,
+    "effort": 4,
+    "confidence": 0.85,
+    "priority": "P1",
+    "files": ["src/components/DynamicNavigation.tsx", "src/index.css"],
+    "acceptance": [
+      "All touch targets ≥ 44px",
+      "Navigation doesn't obstruct content",
+      "Improved mobile usability testing",
+      "Reduced mobile bounce rate"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "PWA-001",
+    "title": "Implement Progressive Web App features",
+    "category": "performance",
+    "rationale": "PWA features improve user experience and engagement",
+    "impact": 6,
+    "effort": 6,
+    "confidence": 0.8,
+    "priority": "P2",
+    "files": ["public/manifest.json", "src/sw.ts", "vite.config.ts"],
+    "acceptance": [
+      "Web app manifest implemented",
+      "Service worker for offline functionality",
+      "Install prompt for mobile users",
+      "PWA audit score > 90"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "ANALYTICS-001",
+    "title": "Implement privacy-focused analytics and monitoring",
+    "category": "monitoring",
+    "rationale": "Need insights into user behavior while respecting privacy",
+    "impact": 5,
+    "effort": 4,
+    "confidence": 0.9,
+    "priority": "P2",
+    "files": ["src/lib/analytics.ts", "src/components/Analytics.tsx"],
+    "acceptance": [
+      "Privacy-compliant analytics setup",
+      "Core Web Vitals monitoring",
+      "Error tracking implemented",
+      "Performance monitoring dashboard"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "CONTENT-001",
+    "title": "Generate sitemap.xml and optimize robots.txt",
+    "category": "seo",
+    "rationale": "Help search engines discover and index all pages efficiently",
+    "impact": 6,
+    "effort": 2,
+    "confidence": 0.95,
+    "priority": "P1",
+    "files": ["public/sitemap.xml", "public/robots.txt", "vite.config.ts"],
+    "acceptance": [
+      "Dynamic sitemap generation",
+      "Optimized robots.txt",
+      "Search Console submission",
+      "Crawl error monitoring"
+    ],
+    "status": "todo"
+  },
+  {
+    "id": "ANIM-001",
+    "title": "Optimize animations with will-change and GPU acceleration",
+    "category": "performance",
+    "rationale": "Heavy Framer Motion usage without optimization can impact performance",
+    "impact": 5,
+    "effort": 4,
+    "confidence": 0.8,
+    "priority": "P2",
+    "files": ["src/index.css", "src/components/*.tsx"],
+    "acceptance": [
+      "will-change properties optimized",
+      "GPU-accelerated transforms",
+      "prefers-reduced-motion respected",
+      "Animation performance improved"
+    ],
+    "status": "todo"
+  }
+]
