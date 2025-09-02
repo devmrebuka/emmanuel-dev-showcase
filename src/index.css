@@ -426,41 +426,90 @@
   color: hsl(var(--primary));
 }
 
-/* Mobile Responsive Fixes */
-@media (max-width: 768px) {
-  .card-feature, .card-elegant {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  
-  .grid {
-    gap: 1rem;
-  }
-  
-  .space-x-4 > * + * {
-    margin-left: 0.75rem;
-  }
-  
-  .max-w-7xl {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* Fix hero social icons on mobile */
-  .fixed.right-6 {
-    right: 1rem;
-  }
-  
-  /* Fix overflow issues */
-  .overflow-hidden {
-    overflow: hidden;
-  }
-  
-  /* Ensure proper text wrapping */
-  .flex-wrap {
-    flex-wrap: wrap;
-  }
-}
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+          .card-feature, .card-elegant {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 1rem;
+          }
+          
+          .grid {
+            gap: 1rem;
+          }
+          
+          .space-x-4 > * + * {
+            margin-left: 0.75rem;
+          }
+          
+          .max-w-7xl {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          
+          /* Enhanced touch targets */
+          button, a, [role="button"] {
+            min-height: 44px;
+            min-width: 44px;
+          }
+          
+          /* Fix hero social icons on mobile */
+          .fixed.right-6 {
+            right: 1rem;
+          }
+          
+          /* Fix overflow issues */
+          .overflow-hidden {
+            overflow: hidden;
+          }
+          
+          /* Ensure proper text wrapping */
+          .flex-wrap {
+            flex-wrap: wrap;
+          }
+          
+          /* Improved mobile typography */
+          .text-4xl {
+            font-size: 2rem;
+          }
+          
+          .text-5xl {
+            font-size: 2.5rem;
+          }
+        }
+
+        /* Focus management improvements */
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+
+        /* Enhanced focus indicators */
+        :focus-visible {
+          outline: 2px solid hsl(var(--primary));
+          outline-offset: 2px;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+          position: absolute;
+          top: -40px;
+          left: 6px;
+          background: hsl(var(--primary));
+          color: hsl(var(--primary-foreground));
+          padding: 8px 16px;
+          border-radius: 4px;
+          text-decoration: none;
+          z-index: 1000;
+          transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+          top: 6px;
+        }
 
 /* Sleek global scrollbar styling */
 html, body, * {

@@ -8,10 +8,14 @@ export interface Project {
   technologies: string[];
   category: string;
   github: string;
-  demo: string;
+  demo: string | null;
   features: string[];
   problemSolved: string;
   impact: string;
+  year?: string;
+  status?: string;
+  featured?: boolean;
+  highlights?: string[];
 }
 
 export interface Experience {

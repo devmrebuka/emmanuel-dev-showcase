@@ -162,15 +162,25 @@ const Blog = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 border-0 bg-muted/30 focus:bg-background transition-colors"
+              aria-label="Search articles by title, content, or tags"
             />
           </div>
 
           {/* Tags Filter */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter articles by tag">
             <Badge
               variant={selectedTag === null ? "default" : "secondary"}
-              className="cursor-pointer hover:bg-primary/90 transition-colors"
+              className="cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
               onClick={() => setSelectedTag(null)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedTag(null);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-pressed={selectedTag === null}
             >
               All
             </Badge>
@@ -178,8 +188,17 @@ const Blog = () => {
               <Badge
                 key={tag}
                 variant={selectedTag === tag ? "default" : "secondary"}
-                className="cursor-pointer hover:bg-primary/90 transition-colors"
+                className="cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
                 onClick={() => setSelectedTag(tag)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedTag(tag);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-pressed={selectedTag === tag}
               >
                 {tag}
               </Badge>
@@ -189,33 +208,47 @@ const Blog = () => {
 
         {/* Featured Post */}
         {filteredPosts.some(post => post.featured) && (
-          <motion.div
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="mb-16"
+            aria-labelledby="featured-post-heading"
           >
+            <h2 id="featured-post-heading" className="sr-only">Featured Article</h2>
             {(() => {
               const featuredPost = filteredPosts.find(post => post.featured);
               return featuredPost ? (
-                <article className="group cursor-pointer" onClick={() => window.location.href = `/blog/${featuredPost.slug}`}>
+                <article 
+                  className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:rounded-lg"
+                  onClick={() => window.location.href = `/blog/${featuredPost.slug}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      window.location.href = `/blog/${featuredPost.slug}`;
+                    }
+                  }}
+                  tabIndex={0}
+                  role="link"
+                  aria-label={`Read featured article: ${featuredPost.title}`}
+                >
                   <div className="mb-4">
                     <Badge variant="secondary" className="text-xs">
                       {featuredPost.category}
                     </Badge>
                   </div>
                   
-                  <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
                     {featuredPost.title}
-                  </h2>
+                  </h3>
                   
                   <p className="text-muted-foreground mb-4 leading-relaxed text-lg">
                     {featuredPost.excerpt}
                   </p>
 
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
-                    <span>{formatDate(featuredPost.date)}</span>
-                    <span>·</span>
+                    <time dateTime={featuredPost.date}>{formatDate(featuredPost.date)}</time>
+                    <span aria-hidden="true">·</span>
                     <span>{featuredPost.readTime}</span>
                   </div>
 
@@ -229,7 +262,7 @@ const Blog = () => {
                 </article>
               ) : null;
             })()}
-          </motion.div>
+          </motion.section>
         )}
 
         {/* Articles List */}
