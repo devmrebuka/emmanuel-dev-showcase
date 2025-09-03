@@ -448,10 +448,10 @@
           }
           
           /* Enhanced touch targets */
-          button, a, [role="button"] {
+          /* button, a, [role="button"] {
             min-height: 44px;
             min-width: 44px;
-          }
+          } */
           
           /* Fix hero social icons on mobile */
           .fixed.right-6 {
