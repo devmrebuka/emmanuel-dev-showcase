@@ -138,55 +138,55 @@ const Experience = () => {
                 <div className="absolute left-4 md:left-1/2 md:transform md:-translate-x-1/2 w-3 h-3 bg-primary rounded-full border-4 border-background shadow-md"></div>
 
                 {/* Content Card */}
-                <div className={`timeline-mobile md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
+                <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     className="card-feature"
                   >
-                    <div className="flex flex-col mb-4">
-                      <div className="mb-3">
-                        <h3 className="text-lg sm:text-xl font-bold mb-2 leading-tight">{experience.title}</h3>
-                        <div className="mobile-card-stack gap-2 text-sm text-muted-foreground mb-2">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold mb-1">{experience.title}</h3>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-2">
                           <div className="flex items-center space-x-1">
-                            <Building className="icon-center h-4 w-4 flex-shrink-0" />
-                            <span className="truncate">{experience.company}</span>
+                            <Building className="h-4 w-4" />
+                            <span>{experience.company}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <MapPin className="icon-center h-4 w-4 flex-shrink-0" />
-                            <span className="truncate">{experience.location}</span>
+                            <MapPin className="h-4 w-4" />
+                            <span>{experience.location}</span>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-1 text-sm text-muted-foreground flex-wrap">
-                          <Calendar className="icon-center h-4 w-4 flex-shrink-0" />
+                        <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
                           <span>{experience.duration}</span>
                           <span className="text-primary">• {experience.type}</span>
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed">
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
                       {experience.description}
                     </p>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold mb-2 text-sm sm:text-base">Key Achievements</h4>
-                      <ul className="space-y-2">
+                      <h4 className="font-semibold mb-2">Key Achievements</h4>
+                      <ul className="space-y-1">
                         {experience.achievements.map((achievement, achievementIndex) => (
                           <li key={achievementIndex} className="flex items-start space-x-2 text-sm text-muted-foreground">
                             <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
-                            <span className="leading-relaxed">{achievement}</span>
+                            <span>{achievement}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-2 text-sm sm:text-base">Technologies</h4>
-                      <div className="badge-container">
+                      <h4 className="font-semibold mb-2">Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
                         {experience.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="badge-mobile px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md"
+                            className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md"
                           >
                             {tech}
                           </span>

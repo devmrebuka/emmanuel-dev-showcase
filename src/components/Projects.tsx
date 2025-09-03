@@ -138,18 +138,18 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2"
+          className="grid gap-6 sm:gap-8 md:grid-cols-2"
         >
           {projects.map((project) => (
             <motion.div
               key={project.id}
               variants={projectVariants}
-              className="card-feature group cursor-pointer overflow-hidden p-4 sm:p-6 md:p-8"
+              className="card-feature group cursor-pointer overflow-hidden p-6 sm:p-8"
               onClick={() => setSelectedProject(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="aspect-video bg-muted rounded-lg mb-4 sm:mb-6 overflow-hidden">
+              <div className="aspect-video bg-muted rounded-lg mb-6 overflow-hidden">
                 <img 
                   src={project.image}
                   alt={`${project.title} - ${project.category} project screenshot`}
@@ -158,32 +158,32 @@ const Projects = () => {
                 />
               </div>
               
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors leading-tight flex-1">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between">
+                  <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <span className="badge-mobile px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full flex-shrink-0">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
                     {project.category}
                   </span>
                 </div>
                 
-                <p className="text-muted-foreground text-sm sm:text-base line-clamp-3 leading-relaxed">
+                <p className="text-muted-foreground line-clamp-3">
                   {project.description}
                 </p>
                 
-                <div className="badge-container">
-                  {project.technologies.slice(0, 3).map((tech) => (
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="badge-mobile px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
+                      className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <span className="badge-mobile px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md">
-                      +{project.technologies.length - 3}
+                  {project.technologies.length > 4 && (
+                    <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md">
+                      +{project.technologies.length - 4} more
                     </span>
                   )}
                 </div>
@@ -198,17 +198,15 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-8 sm:mt-12"
+          className="text-center mt-12"
         >
           <Button
             onClick={() => window.location.href = '/projects'}
             variant="outline"
-            className="btn-ghost-hero group w-full sm:w-auto"
+            className="btn-ghost-hero group"
           >
-            <span className="icon-center">
-              Show More Projects
-              <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </span>
+            Show More Projects
+            <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </motion.div>
 

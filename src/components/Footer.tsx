@@ -54,17 +54,17 @@ const Footer = () => {
 
   return (
     <footer className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="md:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg sm:text-xl font-bold text-gradient mb-3 sm:mb-4">
+              <h3 className="text-xl font-bold text-gradient mb-4">
                 Emmanuel C. Moghalu
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
@@ -75,20 +75,20 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="lg:col-span-1">
+          <div className="md:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Navigation</h4>
-              <ul className="space-y-1.5 sm:space-y-2">
+              <h4 className="font-semibold mb-4">Navigation</h4>
+              <ul className="space-y-2">
                 {navigationLinks.map((link) => (
                   <li key={link.label}>
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm mobile-nav-item text-left p-0 w-auto"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                     >
                       {link.label}
                     </button>
@@ -99,19 +99,19 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="lg:col-span-1">
+          <div className="md:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Get In Touch</h4>
-              <div className="space-y-1.5 sm:space-y-2 text-sm text-muted-foreground">
+              <h4 className="font-semibold mb-4">Get In Touch</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
                 <p>San Francisco, CA</p>
                 <a 
                   href="mailto:emma.moghalu@gmail.com"
-                  className="hover:text-primary transition-colors duration-200 block truncate"
+                  className="hover:text-primary transition-colors duration-200 block"
                 >
                   emma.moghalu@gmail.com
                 </a>
@@ -126,15 +126,15 @@ const Footer = () => {
           </div>
 
           {/* Social Links & Back to Top */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="md:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
-              <div className="badge-container mb-4 sm:mb-6">
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="flex space-x-3 mb-6">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
@@ -143,7 +143,7 @@ const Footer = () => {
                     rel={social.href.startsWith('mailto') ? '' : 'noopener noreferrer'}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mobile-social icon-center rounded-lg bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
+                    className="p-2 rounded-lg bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
                     aria-label={social.label}
                   >
                     <social.icon className="h-4 w-4" />
@@ -155,12 +155,10 @@ const Footer = () => {
                 onClick={scrollToTop}
                 variant="outline"
                 size="sm"
-                className="group w-full sm:w-auto"
+                className="group"
               >
-                <span className="icon-center">
-                  <ArrowUp className="h-4 w-4 mr-2 transition-transform group-hover:-translate-y-1" />
-                  Back to Top
-                </span>
+                <ArrowUp className="h-4 w-4 mr-2 transition-transform group-hover:-translate-y-1" />
+                Back to Top
               </Button>
             </motion.div>
           </div>
@@ -172,27 +170,25 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8"
+          className="border-t border-border mt-8 pt-8"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 text-center sm:text-left">
-            <div className="text-xs sm:text-sm text-muted-foreground">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-sm text-muted-foreground">
               © {currentYear} Emmanuel C. Moghalu. All rights reserved.
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
-              <div className="flex items-center gap-4 sm:gap-6">
-                <a 
-                  href="/privacy" 
-                  className="hover:text-primary transition-colors duration-200"
-                >
-                  Privacy Policy
-                </a>
-                <a 
-                  href="/terms" 
-                  className="hover:text-primary transition-colors duration-200"
-                >
-                  Terms of Service
-                </a>
-              </div>
+            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+              <a 
+                href="/privacy" 
+                className="hover:text-primary transition-colors duration-200"
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="/terms" 
+                className="hover:text-primary transition-colors duration-200"
+              >
+                Terms of Service
+              </a>
               <span className="text-xs">
                 Built with ❤️ using React & TypeScript
               </span>

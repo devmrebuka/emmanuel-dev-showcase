@@ -130,30 +130,30 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-6 lg:space-y-8"
+            className="space-y-8"
           >
             <div className="card-elegant">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gradient">Let's Connect</h3>
-              <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-2xl font-bold mb-6 text-gradient">Let's Connect</h3>
+              <div className="space-y-6">
                 {contactInfo.map((item) => (
-                  <div key={item.label} className="flex items-center space-x-3 sm:space-x-4 group">
-                    <div className="icon-center p-2.5 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
-                      <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                  <div key={item.label} className="flex items-center space-x-4 group">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
+                      <item.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm font-medium text-muted-foreground">{item.label}</p>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
                       {item.label === 'Email' ? (
-                        <div className="flex items-center space-x-2 min-w-0">
+                        <div className="flex items-center space-x-2">
                           <a
                             href={item.href}
-                            className="text-sm sm:text-base text-foreground hover:text-primary transition-colors duration-200 truncate"
+                            className="text-foreground hover:text-primary transition-colors duration-200"
                           >
                             {item.value}
                           </a>
@@ -161,20 +161,19 @@ const Contact = () => {
                             onClick={copyEmail}
                             variant="ghost"
                             size="sm"
-                            className="h-7 w-7 p-0 flex-shrink-0"
-                            aria-label="Copy email address"
+                            className="h-8 w-8 p-0"
                           >
                             {emailCopied ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <Copy className="h-3 w-3" />
+                              <Copy className="h-4 w-4" />
                             )}
                           </Button>
                         </div>
                       ) : (
                         <a
                           href={item.href}
-                          className="text-sm sm:text-base text-foreground hover:text-primary transition-colors duration-200 block truncate"
+                          className="text-foreground hover:text-primary transition-colors duration-200"
                         >
                           {item.value}
                         </a>
@@ -186,8 +185,8 @@ const Contact = () => {
             </div>
 
             <div className="card-elegant">
-              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Follow Me</h3>
-              <div className="badge-container">
+              <h3 className="text-xl font-bold mb-4">Follow Me</h3>
+              <div className="flex space-x-4">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
@@ -196,10 +195,9 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`mobile-social icon-center rounded-xl bg-muted hover:bg-primary/10 transition-all duration-300 text-muted-foreground ${social.color}`}
-                    aria-label={social.label}
+                    className={`p-3 rounded-xl bg-muted hover:bg-primary/10 transition-all duration-300 text-muted-foreground ${social.color}`}
                   >
-                    <social.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <social.icon className="h-5 w-5" />
                   </motion.a>
                 ))}
               </div>
@@ -213,12 +211,12 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="card-elegant space-y-4 sm:space-y-6">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Send a Message</h3>
+            <form onSubmit={handleSubmit} className="card-elegant space-y-6">
+              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               
               <div className="space-y-4">
-                <div className="mobile-form-field">
-                  <Label htmlFor="name" className="text-sm font-medium">Name</Label>
+                <div>
+                  <Label htmlFor="name">Name</Label>
                   <Input
                     id="name"
                     name="name"
@@ -227,12 +225,12 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="Your name"
-                    className="mt-1 text-base"
+                    className="mt-1"
                   />
                 </div>
 
-                <div className="mobile-form-field">
-                  <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                <div>
+                  <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
                     name="email"
@@ -241,12 +239,12 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="your.email@example.com"
-                    className="mt-1 text-base"
+                    className="mt-1"
                   />
                 </div>
 
-                <div className="mobile-form-field">
-                  <Label htmlFor="message" className="text-sm font-medium">Message</Label>
+                <div>
+                  <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -255,7 +253,7 @@ const Contact = () => {
                     required
                     placeholder="Tell me about your project or opportunity..."
                     rows={6}
-                    className="mt-1 resize-none text-base"
+                    className="mt-1 resize-none"
                   />
                 </div>
               </div>
@@ -266,15 +264,15 @@ const Contact = () => {
                 className="w-full btn-hero group"
               >
                 {isSubmitting ? (
-                  <span className="icon-center">
+                  <>
                     <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
                     Sending...
-                  </span>
+                  </>
                 ) : (
-                  <span className="icon-center">
+                  <>
                     Send Message
                     <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  </>
                 )}
               </Button>
             </form>

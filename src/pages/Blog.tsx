@@ -167,10 +167,10 @@ const Blog = () => {
           </div>
 
           {/* Tags Filter */}
-          <div className="badge-container mb-6 sm:mb-8" role="group" aria-label="Filter articles by tag">
+          <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter articles by tag">
             <Badge
               variant={selectedTag === null ? "default" : "secondary"}
-              className="badge-mobile cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
+              className="cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
               onClick={() => setSelectedTag(null)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -188,7 +188,7 @@ const Blog = () => {
               <Badge
                 key={tag}
                 variant={selectedTag === tag ? "default" : "secondary"}
-                className="badge-mobile cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
+                className="cursor-pointer hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
                 onClick={() => setSelectedTag(tag)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -252,9 +252,9 @@ const Blog = () => {
                     <span>{featuredPost.readTime}</span>
                   </div>
 
-                  <div className="badge-container">
+                  <div className="flex flex-wrap gap-2">
                     {featuredPost.tags.slice(0, 4).map((tag) => (
-                      <Badge key={tag} variant="outline" className="badge-mobile text-xs">
+                      <Badge key={tag} variant="outline" className="text-xs">
                         {tag}
                       </Badge>
                     ))}
@@ -304,14 +304,14 @@ const Blog = () => {
                         <span>{post.readTime}</span>
                       </div>
 
-                      <div className="badge-container">
+                      <div className="flex flex-wrap gap-2">
                         {post.tags.slice(0, 3).map((tag) => (
-                          <Badge key={tag} variant="outline" className="badge-mobile text-xs">
+                          <Badge key={tag} variant="outline" className="text-xs">
                             {tag}
                           </Badge>
                         ))}
                         {post.tags.length > 3 && (
-                          <Badge variant="outline" className="badge-mobile text-xs opacity-60">
+                          <Badge variant="outline" className="text-xs opacity-60">
                             +{post.tags.length - 3}
                           </Badge>
                         )}

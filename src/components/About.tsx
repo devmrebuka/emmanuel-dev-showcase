@@ -108,12 +108,12 @@ const About = () => {
             </div>
 
             <div className="card-elegant">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-gradient">Currently Learning</h3>
-              <div className="badge-container">
+              <h3 className="text-2xl font-bold mb-4 text-gradient">Currently Learning</h3>
+              <div className="flex flex-wrap gap-3">
                 {['WebAssembly', 'Rust', 'Kubernetes', 'GraphQL', 'AI/ML'].map((tech) => (
                   <span
                     key={tech}
-                    className="badge-mobile px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
+                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
                   >
                     {tech}
                   </span>
@@ -122,71 +122,51 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Skills Grid - Mobile First */}
+          {/* Skills Marquee */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="relative h-[420px] md:h-[480px] overflow-hidden rounded-2xl bg-gradient-to-b from-muted/20 to-background border border-border/30"
           >
-            {/* Mobile: Simple grid */}
-            <div className="md:hidden mobile-card-stack">
-              {skills.map((skill) => (
-                <div key={skill.title} className="p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30 hover:border-border/60 transition-all duration-300">
-                  <div className="flex items-start space-x-3">
-                    <div className="icon-center p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                      <skill.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-semibold mb-1 text-foreground">{skill.title}</h4>
-                      <p className="text-muted-foreground text-xs leading-relaxed">{skill.description}</p>
+            {/* Subtle fade gradients */}
+            <div className="absolute top-0 left-0 right-0 h-12 md:h-16 bg-gradient-to-b from-background via-background/70 to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-12 md:h-16 bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
+
+            {/* Continuous vertical marquee - duplicated content for seamless loop */}
+            <div className="marquee-vert">
+              <div className="flex flex-col space-y-4 md:space-y-6 pt-4">
+                {skills.map((skill) => (
+                  <div key={skill.title} className="mx-4 md:mx-6 min-h-[96px] flex items-center opacity-95 hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30 hover:border-border/60 transition-all duration-300">
+                      <div className="p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
+                        <skill.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Desktop: Marquee */}
-            <div className="hidden md:block relative h-[480px] overflow-hidden rounded-2xl bg-gradient-to-b from-muted/20 to-background border border-border/30">
-              {/* Fade gradients */}
-              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background via-background/70 to-transparent z-10 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
-
-              {/* Marquee content */}
-              <div className="marquee-vert">
-                <div className="flex flex-col space-y-6 pt-4">
-                  {skills.map((skill) => (
-                    <div key={skill.title} className="mx-6 min-h-[96px] flex items-center opacity-95 hover:opacity-100 transition-opacity duration-300">
-                      <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30 hover:border-border/60 transition-all duration-300">
-                        <div className="icon-center p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
-                          <skill.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
-                        </div>
+              {/* Duplicate for seamless scroll */}
+              <div className="flex flex-col space-y-4 md:space-y-6 pt-4" aria-hidden="true">
+                {skills.map((skill, index) => (
+                  <div key={`${skill.title}-dup-${index}`} className="mx-4 md:mx-6 min-h-[96px] flex items-center opacity-95 transition-opacity duration-300">
+                    <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30">
+                      <div className="p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
+                        <skill.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-
-                {/* Duplicate for seamless scroll */}
-                <div className="flex flex-col space-y-6 pt-4" aria-hidden="true">
-                  {skills.map((skill, index) => (
-                    <div key={`${skill.title}-dup-${index}`} className="mx-6 min-h-[96px] flex items-center opacity-95 transition-opacity duration-300">
-                      <div className="flex items-start space-x-4 w-full p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-border/30">
-                        <div className="icon-center p-2.5 bg-primary/10 rounded-lg flex-shrink-0">
-                          <skill.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-base font-semibold mb-1.5 text-foreground">{skill.title}</h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{skill.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
